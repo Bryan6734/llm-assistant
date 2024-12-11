@@ -8,9 +8,11 @@
 
 Around 4 yrs of experience programming; highly interested pursuing a career in AI safety and alignment. Here are some tangentially-related projects I've worked on:
 
-1. **BryBot iMessage Analyzer:** I built this last year, and it was a bot that I could activate via iMessage (I'd text someone "Brybot, ACTIVATE!"), and brybot would send messages on my behalf in the same iMessage conversation using an LLM. Based on the command I typed after activating it, it would either respond to the latest text, summarize a conversation from exactly one year ago, or select any date and re-create a skit based on our conversation.
-2. **LLM Probabilistic Coherence:** Currently researching whether LLMs follow norms on rationality (i.e. probabilistic coherence) with a post-doc at my institution's lab. I run experiments, read papers, and we're aiming to publish something in the Spring. We use HuggingFace transformers, which grants lower-level access comparead to using an API.
+1. **BryBot iMessage Analyzer:** LLM-powered iMessage bot to run commands in iMessage conversations. Based on my commands after sending "brybot, ACTIVATE!" to a friend, it would either respond to the latest text, summarize a conversation from exactly one year ago, or select any date and re-create a skit based on our conversation.
+2. **LLM Probabilistic Coherence:** Currently researching whether LLMs follow norms on rationality (i.e. probabilistic coherence) with a post-doc at my institution's lab. I run experiments, read papers, and we're aiming to publish something in the Spring. We use HuggingFace transformers.
 3. **AI Safety Camp: Multilingual Robustness** Extending off another NeurIPS paper published by mentor; exploring how multilinguality affects LLM robustness to adv. attacks, establishing MDT (multilingual distributed testing) to expand benchmarks/testing for other languages, etc. 
+
+**Fun fact**: I almost got into MASSIVE trouble for writing a web-scraping bot to login into my student portal and help myself enroll in classes. I had to go through the entire disciplinary system, but after IT found out what I had accomplished, the Chancellor of the IT department wrote me a letter in defense and then offered me a job.
 
 ### Question 2
 *Briefly summarise Redwood research's AI control agenda.*
@@ -22,7 +24,15 @@ I'm familiar with the "AI Control: Improving Safety Despite Intentional Subversi
 ### Question 3
 *Come up with your own control protocol. Describe how you would use U, T, and H to make a novel protocol that you think would be promising. Don’t spend more than 30 minutes thinking about this.* 
 
+For both trusted monitoring and untrusted monitoring, T and U are simply being prompted to rate how suspicious the code is. I think there's a lot of room for improvement for detecting suspicion, especially given that many of the red-teaming attack policies revolve around writing **subtle** backdoors that our current mechanisms don't pick up on.
 
+I'm curious as to if we were to have multiple T's evaluate a given code snippet, with each T focusing on a different known red-teaming attack method (i.e. obfuscation,unknown dependencies, suspicious executables, etc), or just general good coding practices (i.e. adhering to design patterns, ensuring functionality, etc). 
+
+These T's could either engage in some sort of multi-turn debate (with occasional input from U, although that risks confabulated justification (?)), or you have each T output a rating based on their assigned criterion and then sum the scores at the end / identify the top n% most suspicious.
+
+
+The assumption I'm making is that having multiple models each looking for **one** thing might be more effective than
+having one model looking for **multiple** things. 
 
 ## Installation
 
